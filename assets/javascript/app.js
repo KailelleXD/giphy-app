@@ -60,39 +60,57 @@ $(document).ready(function () {
         .then(function (response) {
           var results = response.data;
 
-          for (var i = 0; i < results.length; i++) {
-            var gifSpan = $("<span>");
-
-            var rating = results[i].rating;
-
-            var p = $("<p>");
-            p.text("Rating: " + rating)
-
-            // Add classes to format rating info here.
-            p.addClass("");
+          for (let i = 0; i < results.length; i++) {
+            var gifWrapper = $("<span>");
             
-
             var gameImage = $("<img>");
-
             gameImage.attr("src", results[i].images["fixed_width_still"].url);
-
-            // Add classes for gameImage here.
             gameImage.addClass("gif border border-dark d-inline");
-
             gameImage.attr("data-state", "still");
             gameImage.attr("data-still", results[i].images["fixed_width_still"].url)
             gameImage.attr("data-animate", results[i].images["fixed_width"].url)
 
+            gifWrapper.prepend(gameImage);
 
-
-            gifSpan.prepend(p);
-            gifSpan.prepend(gameImage);
-
-            $("#gifs-appear-here").prepend(gifSpan);
-          }
-
-          console.log(response);
+            console.log(gifWrapper);
+            
+            $("gifs-appear-here").prepend(gifWrapper);
+          } /// for-loop
         });
+
+          // for (var i = 0; i < results.length; i++) {
+          //   var gifSpan = $("<span>");
+
+          //   var rating = results[i].rating;
+
+          //   var p = $("<p>");
+          //   p.text("Rating: " + rating)
+
+          //   // Add classes to format rating info here.
+          //   p.addClass("");
+            
+
+          //   var gameImage = $("<img>");
+
+          //   gameImage.attr("src", results[i].images["fixed_width_still"].url);
+
+          //   // Add classes for gameImage here.
+          //   gameImage.addClass("gif border border-dark d-inline");
+
+          //   gameImage.attr("data-state", "still");
+          //   gameImage.attr("data-still", results[i].images["fixed_width_still"].url)
+          //   gameImage.attr("data-animate", results[i].images["fixed_width"].url)
+
+
+
+          //   gifSpan.prepend(p);
+          //   gifSpan.prepend(gameImage);
+
+          //   $("#gifs-appear-here").prepend(gifSpan);
+          // } /// for-loop
+
+          // console.log(response);
+        // });
     });
   } /// displayGetGifs();
 
