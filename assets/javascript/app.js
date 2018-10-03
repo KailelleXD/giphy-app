@@ -58,59 +58,43 @@ $(document).ready(function () {
           method: "GET"
         })
         .then(function (response) {
-          var results = response.data;
+        var results = response.data;
+        console.log(response);
 
-          for (let i = 0; i < results.length; i++) {
-            var gifWrapper = $("<span>");
+          for (var i = 0; i < results.length; i++) {
+            var gifSpan = $("<span>");
+
+            var rating = results[i].rating;
+
+            var p = $("<p>");
+            p.text("Rating: " + rating)
+
+            var newDiv = $("<div class='imgPanel float-left border border-dark' style='height: 400px;'>");
+
+            // Add classes to format rating info here.
+            p.addClass("text-center py-3 mb-0 bg-secondary");
             
             var gameImage = $("<img>");
+
             gameImage.attr("src", results[i].images["fixed_width_still"].url);
-            gameImage.addClass("gif border border-dark d-inline");
+
+            // Add classes for gameImage here.
+            gameImage.addClass("gif");
+
             gameImage.attr("data-state", "still");
             gameImage.attr("data-still", results[i].images["fixed_width_still"].url)
             gameImage.attr("data-animate", results[i].images["fixed_width"].url)
 
-            gifWrapper.prepend(gameImage);
-
-            console.log(gifWrapper);
+            newDiv.prepend(p);
+            newDiv.prepend(gameImage);
             
-            $("gifs-appear-here").prepend(gifWrapper);
+            gifSpan.prepend(newDiv);
+
+            $("#gifs-appear-here").prepend(gifSpan);
           } /// for-loop
+
+          console.log(response);
         });
-
-          // for (var i = 0; i < results.length; i++) {
-          //   var gifSpan = $("<span>");
-
-          //   var rating = results[i].rating;
-
-          //   var p = $("<p>");
-          //   p.text("Rating: " + rating)
-
-          //   // Add classes to format rating info here.
-          //   p.addClass("");
-            
-
-          //   var gameImage = $("<img>");
-
-          //   gameImage.attr("src", results[i].images["fixed_width_still"].url);
-
-          //   // Add classes for gameImage here.
-          //   gameImage.addClass("gif border border-dark d-inline");
-
-          //   gameImage.attr("data-state", "still");
-          //   gameImage.attr("data-still", results[i].images["fixed_width_still"].url)
-          //   gameImage.attr("data-animate", results[i].images["fixed_width"].url)
-
-
-
-          //   gifSpan.prepend(p);
-          //   gifSpan.prepend(gameImage);
-
-          //   $("#gifs-appear-here").prepend(gifSpan);
-          // } /// for-loop
-
-          // console.log(response);
-        // });
     });
   } /// displayGetGifs();
 
