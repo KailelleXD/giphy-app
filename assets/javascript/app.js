@@ -69,10 +69,10 @@ $(document).ready(function () {
             var p = $("<p>");
             p.text("Rating: " + rating)
 
-            var newDiv = $("<div class='imgPanel float-left border border-dark' style='height: 400px;'>");
+            var newDiv = $("<div class='imgPanel float-left border border-dark my-1'>");
 
             // Add classes to format rating info here.
-            p.addClass("text-center py-3 mb-0 bg-secondary");
+            p.addClass("py-3 mb-0");
             
             var gameImage = $("<img>");
 
